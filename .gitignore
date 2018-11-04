@@ -23,5 +23,9 @@
 hs_err_pid*
 
 #Intellij Folder
-.idea
+.idea/
+target/
+src/.idea/
+src/.idea/Billie-Jean-lyrics-word-cloud/
 
+test.iml
