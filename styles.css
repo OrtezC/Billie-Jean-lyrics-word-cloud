@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-
 body {
     background-color: white;
 }
 
+
 h1 {
-    color: #ff6347;
+    color: #4d5abc;
     text-align: center;
 	font-family: Roboto;
     font-size: 40px;
@@ -22,20 +18,3 @@ p {
     font-size: 20px;
 
 }
-
-div {
-    background-color: lightgrey;
-    width: 300px;
-    border: 25px solid green;
-    padding: 25px;
-    margin: 25px;
-}
-
-
-</style>
-</head>
-<body>
-
-
-</body>
-</html>
