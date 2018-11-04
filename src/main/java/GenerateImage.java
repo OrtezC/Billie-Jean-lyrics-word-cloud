@@ -1,18 +1,39 @@
-public class GenerateImage {
-    public static void main(String [] args){
-        final FrequencyAnalyzer frequencyAnalyzer = new FrequencyAnalyzer();
-        frequencyAnalyzer.setWordFrequenciesToReturn(300);
-        frequencyAnalyzer.setMinWordLength(4);
-        frequencyAnalyzer.setStopWords(loadStopWords());
+import com.kennycason.kumo.CollisionMode;
+import com.kennycason.kumo.WordCloud;
+import com.kennycason.kumo.WordFrequency;
+import com.kennycason.kumo.bg.*;
+import com.kennycason.kumo.font.FontWeight;
+import com.kennycason.kumo.font.KumoFont;
+import com.kennycason.kumo.font.scale.*;
+import com.kennycason.kumo.nlp.FrequencyFileLoader;
+import com.kennycason.kumo.palette.*;
 
-        final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load("text/datarank.txt");
-        final Dimension dimension = new Dimension(500, 312);
+
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
+
+public class GenerateImage {
+    public static void main(String [] args) throws IOException {
+
+        final FrequencyFileLoader frequencyAnalyzer = new FrequencyFileLoader();
+        File input = new File ("WordCount.txt");
+
+        final List<WordFrequency> wordFrequencies = frequencyAnalyzer.load(input);
+
+        final Dimension dimension = new Dimension(600, 600);
         final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
-        wordCloud.setPadding(2);
-        wordCloud.setBackground(new PixelBoundryBackground("backgrounds/whale_small.png"));
-        wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1), new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
-        wordCloud.setFontScalar(new LinearFontScalar(10, 40));
+        wordCloud.setPadding(1);
+        wordCloud.setKumoFont(new KumoFont("Alef", FontWeight.BOLD));
+
+        wordCloud.setBackground(new PixelBoundryBackground("outline.png"));
+        wordCloud.setColorPalette(new LinearGradientColorPalette(new Color(0x4D0FFF), new Color(0xCEDBFA), 20));
+        wordCloud.setFontScalar(new SqrtFontScalar(10, 60));
         wordCloud.build(wordFrequencies);
-        wordCloud.writeToFile("kumo-core/output/whale_wordcloud_small.png");
+        wordCloud.writeToFile("image.png");
+
     }
 }
