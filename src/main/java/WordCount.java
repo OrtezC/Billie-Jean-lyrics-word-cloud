@@ -1,5 +1,3 @@
-import com.kennycason.kumo.WordFrequency;
-
 import java.util.*;
 import java.io.*;
 public class WordCount {
@@ -38,14 +36,9 @@ public class WordCount {
 
         for(HashMap.Entry<String, Integer> entry: sortedwords.entrySet()) {
             output.println(entry.getValue() + ": " +entry.getKey());
-            System.out.println(entry.getValue() + ": " +entry.getKey());
         }
 
         output.close();
-
-
-
-
     }
 
     private static HashMap<String, Integer> sortByValueDescending(HashMap<String, Integer> unsorted) {
@@ -54,7 +47,7 @@ public class WordCount {
 
         Collections.sort(list, new Comparator<HashMap.Entry<String, Integer>>() {
             public int compare(HashMap.Entry<String, Integer> o2, HashMap.Entry<String, Integer> o1) {
-                return (o1.getValue()).compareTo(o2.getValue());
+                return (o1.getValue()).compareTo(o2.getValue());  //Sorts by descending
             }
         });
 
@@ -65,5 +58,4 @@ public class WordCount {
 
         return sortedMap;
     }
-
 }
